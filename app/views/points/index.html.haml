@@ -1,0 +1,23 @@
+= gmaps4rails(@json)
+
+#popup-form{:style => "display:none"}
+  %div{:class => "popup ui-widget"}
+    = form_for @point, :remote => true do |f|
+      %header
+        .coordinates
+          %div.latitude
+          %div.longitude
+        .address
+          %h5.address
+      %section
+        = f.hidden_field :latitude
+        = f.hidden_field :longitude
+        = f.hidden_field :address
+
+        .control-group
+          = f.label :description
+          .controls
+            = f.text_area :description ,:rows => 4, :cols => 50, :style => "width: 482px; height: 95px;resize: none;"
+      .pos
+        %button{:class => 'btn btn-primary', :onclick => 'validate_form()' }
+          Create Point

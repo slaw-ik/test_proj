@@ -1,4 +1,12 @@
 TestProj::Application.routes.draw do
+
+  devise_for :users
+
+  root :to => 'points#index'
+  resources :points
+
+  post '/get_address' => "points#get_address"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

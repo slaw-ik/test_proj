@@ -7,6 +7,10 @@ gem 'rails', '3.2.11'
 
 #gem 'sqlite3'
 gem 'mysql2'
+gem 'thin'
+gem 'gmaps4rails'
+gem 'geocoder'
+gem "twitter-bootstrap-rails"
 
 
 # Gems used only for assets and not required
@@ -37,3 +41,9 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+
+gem "haml", ">= 3.1.7"
+gem "haml-rails", ">= 0.3.5", :group => :development
+gem "bootstrap-sass", ">= 2.2.2.0"
+gem "devise", ">= 2.1.2"

@@ -1,0 +1,28 @@
+.jquery_form_error_message {
+    margin: 5px 0 20px;
+    padding: 10px;
+    background: pink;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+}
+
+/*.error {*/
+    /*background: pink;*/
+/*}*/
+
+span.chars_left,
+span.jquery_form_error_message {
+    background: #f2f2f2;
+    padding: 0 2px;
+    font-weight: normal;
+    font-size: 90%;
+    color: #666;
+}
+
+span.jquery_form_error_message {
+    color: red;
+    display: block;
+    background: none;
+    margin: 0;
+    padding: 0;
+}
