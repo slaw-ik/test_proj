@@ -10,4 +10,11 @@
         = point.address
   %h5
     Description:
-    = point.description
+  .thumbnail
+    %p
+      = point.description
+  %p.actions
+    %a{ :href=>"#", :class=>"btn btn-primary"}
+      Action
+    %a{ :href=>"#", :class=>"btn"}
+      Action

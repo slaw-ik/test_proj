@@ -47,47 +47,21 @@
 
 #infowindow {
   //border: 1px solid red;
-  height: 300px;
-  width: 500px;
+  min-height: 150px;
+  min-width: 500px;
   #activities {
     width: 495px;
     height: 150px;
     border: 1px solid #C6C6C6;
-    table {
-      width: 100%;
-      tr.activity {
-        td.log {
-          background-color: #add8e6;
-          .login {
-            width: 130px;
-            font-size: 12px;
-            font-weight: bold;
-            .date {
-              font-size: 10px;
-              font-weight: normal;
-            }
-          }
-        }
-      }
-      td.cnt {
-        background-color: #e0ffff;
-        .cont {
-          margin-left: 10px;
-          .tag-cnt {
-            //float: left;
-            .tag-item {
-              background: #dee7f8 url(../img/disc.png) 4px center no-repeat;
-              border: 1px solid #cad8f3;
-              padding: 2px 5px 2px 13px;
-              -moz-border-radius: 8px 4px 4px 8px;
-              -webkit-border-radius: 8px 4px 4px 8px;
-              border-radius: 8px 4px 4px 8px;
-              float: left;
-              margin: 2px;
-            }
-          }
-        }
-      }
-    }
+  }
+  .description_box {
+    background-color: lightgray;
+    border: 1px solid linen;
+    min-height: 50px;
+    padding: 5px;
+  }
+  p.actions{
+    margin-top: 10px;
+    text-align: right;
   }
 }

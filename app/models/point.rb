@@ -14,9 +14,9 @@ class Point < ActiveRecord::Base
   attr_accessor :no_geocode
 
 
-  #def gmaps4rails_address
-  #  address
-  #end
+  def gmaps4rails_address
+    address
+  end
 
   def self.prepare_parameters(data)
     data[:no_geocode] = true
