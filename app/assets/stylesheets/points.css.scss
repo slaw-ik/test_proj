@@ -47,7 +47,7 @@
 
 #infowindow {
   //border: 1px solid red;
-  min-height: 150px;
+  min-height: 180px;
   min-width: 500px;
   #activities {
     width: 495px;
@@ -63,5 +63,17 @@
   p.actions{
     margin-top: 10px;
     text-align: right;
+  }
+  .thumbnail{
+    p, textarea{
+      margin-bottom: 0;
+    }
+    textarea{
+      width: 475px;
+    }
+  }
+  h5.address{
+    height: 40px;
+    margin-bottom: 0;
   }
 }

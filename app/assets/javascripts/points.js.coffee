@@ -3,10 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  #  $(".chzn-select").chosen();
-  #  $('input.tag').tagedit(
-  #    autocompleteURL: '/tags_autocomplete'
-  #  )
   window.markersArray = []
   # On click, clear markers, place a new one, update coordinates in the form
   Gmaps.map.callback = ->
@@ -16,11 +12,6 @@ $ ->
       get_address(event.latLng)
       updateFormLocation(event.latLng)
     )
-
-    for marker in Gmaps.map.markers
-      google.maps.event.addListener(marker.serviceObject, 'click', (event) ->
-        apply_tagging()
-      )
 
   # Update form attributes with given coordinates
   updateFormLocation = (latLng) ->
@@ -44,9 +35,6 @@ $ ->
     infowindow.open(Gmaps.map.serviceObject, marker)
     validate_form()
 
-  #      $(".chzn-select").chosen();
-
-
   get_address = (latLng) ->
     $.ajax(
       url: '/get_address'
@@ -58,6 +46,46 @@ $ ->
       $('.coordinates div.latitude').text(latLng.lat().toFixed(6))
       $('.coordinates div.longitude').text(latLng.lng().toFixed(6))
 
+#====================Edit description process=============================================
+$ ->
+  #  $("body").on("click", "p.point_desc[owner='1']", create_input)
+  #
+  #  create_input = ->
+  #    $(this).html("<input type='text' name='description' value='"+$(this).text()+"'>")
+  #    alert("sxsx")
+  #    $("body").off("click", "p#"+$(this).attr("id"), create_input)
+  $("body").on("click", "p.point_desc[owner='1']", ->
+    $(this).removeClass("point_desc").html("<textarea name='description'>" + $(this).text().trim() + "</textarea>")
+    $('p.actions a.btn').css display: 'inline-block'
+  )
+
+  $("body").on("click", "#cancel", ->
+    text = $(this).parents('div#infowindow').children('div.thumbnail').children('p').children('textarea').text()
+    $(this).parents('div#infowindow').children('div.thumbnail').children('p').children('textarea').remove()
+    $(this).parents('div#infowindow').children('div.thumbnail').children('p').addClass('point_desc').text(text)
+    $('p.actions a.btn').hide()
+  )
+
+  $("body").on("click", "#save", ->
+    text = $(this).parents('div#infowindow').children('div.thumbnail').children('p').children('textarea').val()
+    id = $(this).parents('div#infowindow').children('div.thumbnail').children('p').attr('id')
+    latitude = $('div#infowindow .latitude').text().trim()
+    longitude = $('div#infowindow .longitude').text().trim()
+    data = point:
+      description: text
+      id: id
+      latitude: latitude
+      longitude: longitude
+
+    $.ajax(
+      url: "/points/" + id,
+      type: 'PUT',
+      data: JSON.stringify(data),
+      contentType: "application/json"
+      dataType: "script"
+    )
+  )
+
 # Removes the overlays from the map
 @clearOverlays = ->
   if window.markersArray?
@@ -67,8 +95,6 @@ $ ->
 
 
 #Form validations
-#$(document).ready ->
-#  $("#new_point").validate()
 @validate_form = ->
   $(".map_container #new_point").validate
     rules:

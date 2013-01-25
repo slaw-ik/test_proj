@@ -11,10 +11,10 @@
   %h5
     Description:
   .thumbnail
-    %p
+    %p{:class => "point_desc", :owner => owner, :id => point.id}
       = point.description
   %p.actions
-    %a{ :href=>"#", :class=>"btn btn-primary"}
-      Action
-    %a{ :href=>"#", :class=>"btn"}
-      Action
+    %a{ :href=>"#", :id => "save", :class=>"btn btn-success", :style => "display: none;"}
+      Save
+    %a{ :href=>"#", :id => "cancel", :class=>"btn btn-danger", :style => "display: none;"}
+      Cancel

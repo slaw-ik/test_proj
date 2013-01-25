@@ -1,0 +1,9 @@
+clearOverlays();
+//Gmaps.map.addMarkers(<%= raw @json %>);
+Gmaps.map.replaceMarkers(<%= raw @json %>);
+Gmaps.map.callback();
+//Gmaps.map.map.setCenter(new google.maps.LatLng(<%= @center[:latitude]%>, <%=@center[:longitude]%>));
+//Gmaps.map.map.setZoom(15);
+
+//var last_marker = Gmaps.map.markers[Gmaps.map.markers.length - 1];
+//last_marker.infowindow.open(Gmaps.map.map, last_marker.serviceObject);

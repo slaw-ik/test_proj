@@ -10,16 +10,18 @@ class Point < ActiveRecord::Base
   after_validation :reverse_geocode
   #==================================================================
 
-  attr_accessible :address, :gmaps, :description, :latitude, :longitude, :no_geocode, :tags
+  attr_accessible :address, :gmaps, :description, :latitude, :longitude, :no_geocode, :user_id
   attr_accessor :no_geocode
 
+  belongs_to :user
 
   def gmaps4rails_address
     address
   end
 
-  def self.prepare_parameters(data)
+  def self.prepare_parameters(data, user)
     data[:no_geocode] = true
+    data[:user_id] = user.id
     return {:point => self.new(data)}
   end
 
