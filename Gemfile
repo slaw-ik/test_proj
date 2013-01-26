@@ -6,12 +6,13 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'sqlite3'
-gem 'mysql2'
+
 gem 'thin'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem "twitter-bootstrap-rails"
 
+gem "heroku"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -42,8 +43,15 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
+group :development do
+  gem 'mysql2'
+  gem "haml-rails", ">= 0.3.5"
+end
+group :production do
+  gem 'pg'
+end
+
 
 gem "haml", ">= 3.1.7"
-gem "haml-rails", ">= 0.3.5", :group => :development
 gem "bootstrap-sass", ">= 2.2.2.0"
 gem "devise", ">= 2.1.2"
