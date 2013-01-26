@@ -11,9 +11,9 @@ class PointsController < ApplicationController
   end
 
   def create
-    data = Point.prepare_parameters(params[:point], current_user)
-    puts params[:point]
-    @point = data[:point]
+    @point = Point.new(params[:point])
+    @point.no_geocode = true
+    @point.user_id = current_user.id
 
     if @point.save
       @json = build_map(@point)
@@ -23,11 +23,8 @@ class PointsController < ApplicationController
         format.html { redirect_to :action => :index }
         format.js
       end
-
-      return
     else
       redirect_to :action => :index
-      return
     end
   end
 
@@ -43,13 +40,24 @@ class PointsController < ApplicationController
         format.html { redirect_to :action => :index }
         format.js
       end
-
-      return
     else
       redirect_to :action => :index
-      return
     end
+  end
 
+  def destroy
+    @point = current_user.points.where(['id = ?', params[:id]]).first
+
+    if @point.destroy()
+      @json = build_map(Point.all)
+
+      respond_to do |format|
+        format.html { redirect_to :action => :index }
+        format.js
+      end
+    else
+      redirect_to :action => :index
+    end
   end
 
   private

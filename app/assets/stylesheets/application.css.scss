@@ -23,3 +23,36 @@
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
   box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
 }
+
+.form-signin {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.form-signup{
+  max-width: 300px;
+  padding: 19px 29px 29px;
+}
+
+#error_explanation{
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+
+.alert{
+  position: relative;
+  z-index: 5;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, .4);
+}

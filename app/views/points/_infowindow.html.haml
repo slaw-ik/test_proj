@@ -16,5 +16,6 @@
   %p.actions
     %a{ :href=>"#", :id => "save", :class=>"btn btn-success", :style => "display: none;"}
       Save
-    %a{ :href=>"#", :id => "cancel", :class=>"btn btn-danger", :style => "display: none;"}
+    %a{ :href=>"#", :id => "cancel", :class=>"btn btn", :style => "display: none;"}
       Cancel
+    = link_to 'Delete POI', "#", :confirm=>'Are you sure?',:id => "delete", :class=>"btn btn-danger", :style => "display: none;"

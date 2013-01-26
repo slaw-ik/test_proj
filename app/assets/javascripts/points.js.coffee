@@ -5,13 +5,21 @@
 $ ->
   window.markersArray = []
   # On click, clear markers, place a new one, update coordinates in the form
-  Gmaps.map.callback = ->
-    google.maps.event.addListener(Gmaps.map.serviceObject, 'click', (event) ->
-      clearOverlays()
-      placeMarker(event.latLng)
-      get_address(event.latLng)
-      updateFormLocation(event.latLng)
-    )
+  if Gmaps.map
+    Gmaps.map.callback = ->
+      google.maps.event.addListener(Gmaps.map.serviceObject, 'click', (event) ->
+        clearOverlays()
+        placeMarker(event.latLng)
+        get_address(event.latLng)
+        updateFormLocation(event.latLng)
+        close_infowindows()
+      )
+
+      for marker in Gmaps.map.markers
+        google.maps.event.addListener(marker.serviceObject, 'click', (event) ->
+          clearOverlays()
+        )
+
 
   # Update form attributes with given coordinates
   updateFormLocation = (latLng) ->
@@ -46,14 +54,11 @@ $ ->
       $('.coordinates div.latitude').text(latLng.lat().toFixed(6))
       $('.coordinates div.longitude').text(latLng.lng().toFixed(6))
 
+  close_infowindows = ->
+    for marker in Gmaps.map.markers
+      marker.infowindow.close()
 #====================Edit description process=============================================
 $ ->
-  #  $("body").on("click", "p.point_desc[owner='1']", create_input)
-  #
-  #  create_input = ->
-  #    $(this).html("<input type='text' name='description' value='"+$(this).text()+"'>")
-  #    alert("sxsx")
-  #    $("body").off("click", "p#"+$(this).attr("id"), create_input)
   $("body").on("click", "p.point_desc[owner='1']", ->
     $(this).removeClass("point_desc").html("<textarea name='description'>" + $(this).text().trim() + "</textarea>")
     $('p.actions a.btn').css display: 'inline-block'
@@ -82,6 +87,15 @@ $ ->
       type: 'PUT',
       data: JSON.stringify(data),
       contentType: "application/json"
+      dataType: "script"
+    )
+  )
+
+  $("body").on("click", "#delete", ->
+    id = $(this).parents('div#infowindow').children('div.thumbnail').children('p').attr('id')
+    $.ajax(
+      url: "/points/" + id,
+      type: 'DELETE',
       dataType: "script"
     )
   )

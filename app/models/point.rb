@@ -19,12 +19,6 @@ class Point < ActiveRecord::Base
     address
   end
 
-  def self.prepare_parameters(data, user)
-    data[:no_geocode] = true
-    data[:user_id] = user.id
-    return {:point => self.new(data)}
-  end
-
   private
 
   def address_presence
