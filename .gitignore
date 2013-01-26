@@ -15,7 +15,7 @@
 /log/*.log
 /tmp
 
-Gemfile.lock
+#Gemfile.lock
 .rvmrc
 db/schema.rb
 log/*
