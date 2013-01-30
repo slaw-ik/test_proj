@@ -1,4 +1,7 @@
-= link_to "CCW demo", root_path, :class => 'brand'
+= link_to "Home", root_path, :class => 'brand'
+%p
+  session id
+  = request.session_options[:id]
 %ul.nav.pull-right
   - if user_signed_in?
     %li
